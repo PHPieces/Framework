@@ -27,7 +27,9 @@ class App
     
     public function run()
     {
-        $this->route->dispatch($this->container->get('request'), $this->container->get('response'));
+        $response = $this->route->dispatch($this->container->get('request'), $this->container->get('response'));
+
+        $this->container->get('emitter')->emit($response);
     }
 
     public function get($route, $handler)
