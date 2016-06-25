@@ -14,8 +14,9 @@ class App
 
     public $route;
 
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         $this->bootstrap();
     }
 
@@ -61,6 +62,6 @@ class App
 
         $this->route = new RouteCollection($this->container);
 
-        $this->container->share(Engine::class, Engine::class)->withArgument(__DIR__ . '/templates');
+        $this->container->share(Engine::class, Engine::class)->withArgument($this->config['template_dir']);
     }
 }
