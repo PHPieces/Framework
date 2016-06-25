@@ -27,7 +27,7 @@ class App
     
     public function run()
     {
-        $response = $this->route->dispatch($this->container->get('request'), $this->container->get('response'));
+        $response = $this->getResponse();
 
         $this->container->get('emitter')->emit($response);
     }
@@ -42,7 +42,7 @@ class App
         $this->route->map('POST', $route, $handler);
     }
 
-    private function loadContainer()
+    protected function loadContainer()
     {
         $this->container = new \League\Container\Container;
 
@@ -53,11 +53,7 @@ class App
         $this->container->share('response', Response::class);
 
         $this->container->share(
-            'request', function () {
-                return ServerRequestFactory::fromGlobals(
-                    $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-                );
-            }
+            'request', $this->getRequest()
         );
 
         $this->container->share('emitter', SapiEmitter::class);
@@ -65,5 +61,17 @@ class App
         $this->route = new RouteCollection($this->container);
 
         $this->container->share(Engine::class, Engine::class)->withArgument($this->config['template_dir']);
+    }
+
+    protected function getRequest() {
+        return ServerRequestFactory::fromGlobals(
+            $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+        );
+    }
+
+    protected function getResponse() {
+        $request = $this->route->dispatch($this->container->get('request'), $this->container->get('response'));
+
+        return $request;
     }
 }
