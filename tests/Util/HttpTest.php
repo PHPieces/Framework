@@ -9,7 +9,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $dir = __DIR__.'/../../data';
+        $dir = __DIR__.'/../data';
 
         $this->process = new Process("php -S localhost:9000 -t {$dir}");
 

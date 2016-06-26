@@ -4,7 +4,7 @@ use PHPieces\Framework\Util\File;
 
 class FileTest extends \PHPUnit_Framework_TestCase
 {
-    private static $temp_dir;
+    private $temp_dir;
 
     public function setUp()
     {
