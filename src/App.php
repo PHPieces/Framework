@@ -27,7 +27,7 @@ class App
 
     public function run()
     {
-        $request = $this->getRequest();
+        $request = $this->container->get('request');
         
         $response = $this->getResponse($request);
 
