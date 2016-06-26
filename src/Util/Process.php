@@ -7,7 +7,7 @@ class Process
     private $pid;
     private $command;
 
-    public function __construct($cl=false)
+    public function __construct($cl = false)
     {
         if ($cl != false) {
             $this->command = $cl;

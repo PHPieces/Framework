@@ -5,12 +5,12 @@ namespace PHPieces\Framework\Util;
 class File
 {
 
-    public function exists($filename) 
+    public function exists($filename)
     {
         return file_exists($filename);
     }
 
-    public function get($path) 
+    public function get($path)
     {
         return file_get_contents($path);
     }
@@ -26,5 +26,4 @@ class File
     {
         return filemtime($path);
     }
-    
 }

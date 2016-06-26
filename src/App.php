@@ -55,9 +55,14 @@ class App
         $this->container->share('response', Response::class);
 
         $this->container->share(
-            'request', ServerRequestFactory::fromGlobals(
-            $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-        )
+            'request',
+            ServerRequestFactory::fromGlobals(
+                $_SERVER,
+                $_GET,
+                $_POST,
+                $_COOKIE,
+                $_FILES
+            )
         );
 
         $this->container->share('emitter', SapiEmitter::class);
@@ -67,7 +72,8 @@ class App
         $this->container->share(Engine::class, Engine::class)->withArgument($this->config['template_dir']);
     }
 
-    public function getResponse($request) {
+    public function getResponse($request)
+    {
         $response = $this->route->dispatch($request, $this->container->get('response'));
 
         return $response;

@@ -21,7 +21,7 @@ class Client extends BaseClient
             $request->getFiles(),
             $request->getUri(),
             $request->getMethod(),
-            fopen('data://text/plain,' . $request->getContent(),'r'),
+            fopen('data://text/plain,' . $request->getContent(), 'r'),
             [],
             $request->getCookies(),
             $request->getParameters(),
