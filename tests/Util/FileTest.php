@@ -18,9 +18,10 @@ class FileTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
          $files = glob($this->temp_dir.'/*'); // get all file names
-        foreach($files as $file){ // iterate files
-            if(is_file($file))
+        foreach ($files as $file) { // iterate files
+            if (is_file($file)) {
                 unlink($file); // delete file
+            }
         }
 
         rmdir($this->temp_dir);
